@@ -1,0 +1,16 @@
+sudo: required
+# Above statement says we need superuser permission to always access this
+services:
+  - docker
+  # Automatically installs copy of docker into container
+before_install:
+  - docker build -t themarvelfan616/docker-react -f Dockerfile.dev .
+  # Commands to run before installation
+script:
+  - docker run -e CI=true themarvelfan616/docker-react npm run test
+#  - docker run themarvelfan616/docker-react npm run tests -- --coverage
+  # Commands that actually run while testing
+  # Travis CI either stops that test when exit code != 0, or the tests pass, and it assumes that the test exited. However, in case of npm commands
+  # the test will never exit automatically.
+  # Both ways work, but uncommented one is standard
+  # coverage flag provides output about how much of the code is covered by the test, but Travis CI reads only the exit code and not the output
