@@ -14,3 +14,20 @@ script:
   # the test will never exit automatically.
   # Both ways work, but uncommented one is standard
   # coverage flag provides output about how much of the code is covered by the test, but Travis CI reads only the exit code and not the output
+# below section deals with specifying deployment specification to Travis CI
+deploy:
+  provider: elasticbeanstalk
+  # Pre configured
+  region: "ap-southeast-2"
+  # Above obtained from aws itself
+  app: "frontend"
+  env: "Frontend-env"
+  # Above is obtained from aws itself
+  bucket_name: "elasticbeanstalk-ap-southeast-2-381491946362"
+  # Above is obtained from aws itself
+  bucket_path: "frontend"
+  # exact same as app name
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"

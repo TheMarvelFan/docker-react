@@ -1,28 +1,8 @@
-# The purpose of this file is to prevent the long docker run option being typed each time, by using docker-compose
-
 version: '3'
 services:
   web:
     build:
-    # build with "." will give error as there is no dockerfile in the current folder
       context: .
-      # above one specifies location of the file only (relative filepath)
-      dockerfile: Dockerfile.dev
-      # below one specifies the file in that location
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
-    volumes:
-      - /home/node/app/node_modules
-      - .:/home/node/app
-      # above lines represent list of mappings between volumes.
-      # since there is no ":" in first line, it will not be mapped to anything
-      # in the second line, we will say map the current folder (outside container) to app folder (inside container)
-
-  tests:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /home/node/app/node_modules
-      - .:/home/node/app
-    command: ["npm", "run", "test"]
+      - '80:80'
