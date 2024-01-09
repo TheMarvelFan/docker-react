@@ -1,5 +1,7 @@
 sudo: required
 # Above statement says we need superuser permission to always access this
+language: generic
+
 services:
   - docker
   # Automatically installs copy of docker into container
@@ -30,4 +32,4 @@ deploy:
   on:
     branch: main
   access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: "$AWS_SECRET_KEY"
+  secret_access_key: $AWS_SECRET_KEY
