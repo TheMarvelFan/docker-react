@@ -15,6 +15,8 @@ RUN npm run build
 
 FROM nginx
 # no need to specify "as" here
+EXPOSE 80
+# Above command specifies that the port 80 has to be linked with the running instance
 COPY --from=builder /home/node/app/build /usr/share/nginx/html
 
 # Above command specifies that we need to copy something from the builder phase, the path of what we have to copy, and the location where
